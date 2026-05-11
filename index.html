@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark Remover - Remove Watermarks from Images Online Free</title>
+  <meta name="description" content="Remove watermarks from images online for free. 100% browser-based, your images never leave your device. No upload required.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://diyaluo.github.io/watermark-remover/">
+  <meta property="og:title" content="Watermark Remover - Free Online Image Watermark Removal">
+  <meta property="og:description" content="Remove watermarks from images online for free. 100% browser-based, no upload required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://diyaluo.github.io/watermark-remover/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Watermark Remover - Free Online Image Watermark Removal">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --card-bg: #f9fafb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --radius: 12px;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+    .dark {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --border: #334155;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --card-bg: #1e293b;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4);
+      --success: #34d399;
+      --danger: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* Nav */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; border-bottom: 1px solid var(--border);
+    }
+    nav .logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+    nav .nav-right { display: flex; align-items: center; gap: 16px; }
+    .theme-toggle {
+      background: none; border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 12px; cursor: pointer; color: var(--text);
+      font-size: 0.9rem;
+    }
+    .theme-toggle:hover { background: var(--card-bg); }
+
+    /* Hero */
+    .hero { text-align: center; padding: 40px 20px 24px; }
+    .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .hero p { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+    .hero .badge {
+      display: inline-block; background: #dcfce7; color: #166534;
+      padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;
+      font-weight: 600; margin-bottom: 12px;
+    }
+    .dark .badge { background: #064e3b; color: #6ee7b7; }
+
+    /* Upload Zone */
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      padding: 48px 24px; text-align: center; cursor: pointer;
+      transition: all 0.2s; margin: 0 auto 20px; max-width: 680px;
+      background: var(--card-bg);
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: var(--accent); background: rgba(79,70,229,0.04);
+    }
+    .upload-zone .icon { font-size: 3rem; margin-bottom: 12px; }
+    .upload-zone h2 { font-size: 1.2rem; margin-bottom: 6px; }
+    .upload-zone p { color: var(--text-secondary); font-size: 0.9rem; }
+
+    /* Editor */
+    .editor { display: none; }
+    .editor.active { display: block; }
+
+    .canvas-wrapper {
+      position: relative; margin: 16px auto; max-width: 100%;
+      display: flex; justify-content: center; align-items: center;
+      background: repeating-conic-gradient(var(--card-bg) 0% 25%, transparent 0% 50%) 50% / 20px 20px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      overflow: hidden; min-height: 300px;
+    }
+    .canvas-wrapper canvas { max-width: 100%; max-height: 70vh; display: block; }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+      padding: 12px 16px; background: var(--card-bg);
+      border-radius: var(--radius); border: 1px solid var(--border); margin: 12px 0;
+    }
+    .toolbar label { font-size: 0.85rem; font-weight: 600; }
+    .toolbar input[type="range"] { width: 100px; }
+    .toolbar .brush-size-value { font-size: 0.85rem; color: var(--text-secondary); min-width: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 600; border: none; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+    }
+    .btn-outline:hover { background: var(--card-bg); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { opacity: 0.9; }
+    .btn-danger { background: transparent; border: 1px solid var(--danger); color: var(--danger); }
+    .btn-danger:hover { background: var(--danger); color: white; }
+    .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-right: auto; }
+
+    /* Mode switch */
+    .mode-switch { display: flex; gap: 4px; background: var(--border); border-radius: 8px; padding: 3px; }
+    .mode-btn {
+      padding: 6px 14px; border: none; border-radius: 6px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 500; background: transparent; color: var(--text-secondary);
+    }
+    .mode-btn.active { background: var(--bg); color: var(--text); box-shadow: var(--shadow); }
+
+    /* Status */
+    .status-bar {
+      text-align: center; padding: 8px; font-size: 0.9rem;
+      color: var(--text-secondary); min-height: 36px;
+    }
+    .status-bar.loading { color: var(--accent); font-weight: 600; }
+    .status-bar .spinner::after {
+      content: ""; display: inline-block; width: 16px; height: 16px;
+      border: 2px solid var(--border); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Result actions */
+    .result-actions { display: none; justify-content: center; gap: 12px; margin: 16px 0; }
+    .result-actions.active { display: flex; }
+
+    /* Features */
+    .features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin: 40px 0; padding: 0 20px; max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+    .feature-card {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 20px; border: 1px solid var(--border); text-align: center;
+    }
+    .feature-card .fi { font-size: 1.8rem; margin-bottom: 8px; }
+    .feature-card h3 { font-size: 1rem; margin-bottom: 4px; }
+    .feature-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* FAQ */
+    .faq { max-width: 680px; margin: 32px auto; padding: 0 20px; }
+    .faq h2 { text-align: center; margin-bottom: 20px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 8px;
+      margin-bottom: 8px; overflow: hidden;
+    }
+    .faq-q {
+      padding: 14px 16px; cursor: pointer; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--card-bg);
+    }
+    .faq-q:hover { opacity: 0.8; }
+    .faq-q .arrow { transition: transform 0.2s; }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 16px 14px; font-size: 0.9rem; color: var(--text-secondary); }
+    .faq-item.open .faq-a { display: block; }
+
+    footer {
+      text-align: center; padding: 24px; color: var(--text-secondary);
+      font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.5rem; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .btn-group { margin-right: 0; justify-content: center; }
+      .upload-zone { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">Watermark Remover</a>
+    <div class="nav-right">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Dark Mode</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="hero">
+      <span class="badge">100% Free · No Upload · Private</span>
+      <h1>Remove Watermarks From Images</h1>
+      <p>Upload your image, brush over the watermark, and remove it instantly. All processing happens in your browser — your images never leave your device.</p>
+    </div>
+
+    <!-- Upload -->
+    <div class="upload-zone" id="uploadZone">
+      <div class="icon">🖼️</div>
+      <h2>Drop image here or click to select</h2>
+      <p>Supports JPG, PNG, WebP, BMP, GIF</p>
+      <input type="file" id="fileInput" accept="image/*" style="display:none">
+    </div>
+
+    <!-- Loading OpenCV -->
+    <div id="opencvLoading" style="display:none; text-align:center; padding:24px;">
+      <div class="status-bar loading"><span class="spinner"></span>Loading image processing engine...</div>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor" id="editor">
+      <div class="toolbar">
+        <div class="mode-switch">
+          <button class="mode-btn active" data-mode="brush" onclick="setMode(\'brush\')">🖊 Brush</button>
+          <button class="mode-btn" data-mode="view" onclick="setMode(\'view\')">👁 View</button>
+        </div>
+        <label>Size:</label>
+        <input type="range" id="brushSize" min="5" max="80" value="25">
+        <span class="brush-size-value" id="brushSizeVal">25px</span>
+        <div class="btn-group">
+          <button class="btn btn-danger" onclick="resetMask()">Clear Mask</button>
+          <button class="btn btn-outline" onclick="resetImage()">Reset</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper" id="canvasWrapper">
+        <canvas id="mainCanvas"></canvas>
+      </div>
+
+      <div class="status-bar" id="statusBar">Brush over the watermark areas, then click Remove Watermark</div>
+
+      <div style="display:flex; justify-content:center; gap:12px; margin:12px 0;">
+        <button class="btn btn-primary" id="processBtn" onclick="processInpaint()" disabled>
+          ✨ Remove Watermark
+        </button>
+        <button class="btn btn-success" id="downloadBtn" onclick="downloadResult()" style="display:none">
+          ⬇ Download Result
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature-card">
+      <div class="fi">🔒</div>
+      <h3>100% Private</h3>
+      <p>Your images are processed locally in your browser. Nothing is uploaded to any server.</p>
+    </div>
+    <div class="feature-card">
+      <div class="fi">🎨</div>
+      <h3>Smart Inpainting</h3>
+      <p>Uses advanced OpenCV inpainting to intelligently fill removed areas with matching content.</p>
+    </div>
+    <div class="feature-card">
+      <div class="fi">🔓</div>
+      <h3>Free & Unlimited</h3>
+      <p>No sign-ups, no credits, no limits. Remove watermarks from as many images as you need.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How does the watermark removal work? <span class="arrow">▼</span></div>
+      <div class="faq-a">Upload your image, use the brush tool to paint over the watermark areas (they\'ll turn red), then click "Remove Watermark". The tool uses OpenCV\'s inpainting algorithm to intelligently fill the selected areas based on surrounding pixels.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my image uploaded to a server? <span class="arrow">▼</span></div>
+      <div class="faq-a">No! All processing happens entirely in your browser using OpenCV.js. Your images never leave your device. This is our core privacy advantage over other watermark removal tools.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What image formats are supported? <span class="arrow">▼</span></div>
+      <div class="faq-a">JPG, PNG, WebP, BMP, and GIF are supported. The output is downloaded as PNG to preserve quality.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are there any usage limits? <span class="arrow">▼</span></div>
+      <div class="faq-a">No limits whatsoever. You can remove watermarks from as many images as you want, completely free. No registration or sign-up required.</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Watermark Remover &mdash; Free online tool. No upload, no sign-up, no limits.</p>
+    <p>Images processed locally in your browser using <a href="https://opencv.org" target="_blank" rel="noopener">OpenCV.js</a>.</p>
+  </footer>
+
+  <script src="https://docs.opencv.org/4.9.0/opencv.js" async onload="onOpenCvReady()"></script>
+  <script>
+    let cvReady = false;
+    let originalImage = null;
+    let imgElement = null;
+    let canvas = null;
+    let ctx = null;
+    let maskCanvas = null;
+    let maskCtx = null;
+    let isDrawing = false;
+    let currentMode = \'brush\';
+    let hasResult = false;
+    let resultDataUrl = null;
+
+    function onOpenCvReady() {
+      cvReady = true;
+      console.log(\'OpenCV.js ready\');
+    }
+
+    // Theme
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle(\'dark\');
+      document.getElementById(\'themeBtn\').textContent = isDark ? \'Light Mode\' : \'Dark Mode\';
+      localStorage.setItem(\'theme\', isDark ? \'dark\' : \'light\');
+    }
+    if (localStorage.getItem(\'theme\') === \'dark\' || (window.matchMedia(\'(prefers-color-scheme: dark)\').matches && !localStorage.getItem(\'theme\'))) {
+      document.body.classList.add(\'dark\');
+      document.getElementById(\'themeBtn\').textContent = \'Light Mode\';
+    }
+
+    // Upload
+    const uploadZone = document.getElementById(\'uploadZone\');
+    const fileInput = document.getElementById(\'fileInput\');
+    const editor = document.getElementById(\'editor\');
+    const processBtn = document.getElementById(\'processBtn\');
+    const downloadBtn = document.getElementById(\'downloadBtn\');
+    const statusBar = document.getElementById(\'statusBar\');
+
+    uploadZone.addEventListener(\'click\', () => fileInput.click());
+    uploadZone.addEventListener(\'dragover\', (e) => { e.preventDefault(); uploadZone.classList.add(\'dragover\'); });
+    uploadZone.addEventListener(\'dragleave\', () => uploadZone.classList.remove(\'dragover\'));
+    uploadZone.addEventListener(\'drop\', (e) => { e.preventDefault(); uploadZone.classList.remove(\'dragover\'); if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+    fileInput.addEventListener(\'change\', (e) => { if(e.target.files.length) handleFile(e.target.files[0]); });
+
+    function handleFile(file) {
+      if (!file.type.startsWith(\'image/\')) { statusBar.textContent = \'Please select an image file.\'; return; }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        imgElement = new Image();
+        imgElement.onload = function() {
+          uploadZone.style.display = \'none\';
+          document.getElementById(\'opencvLoading\').style.display = \'block\';
+          const checkCv = setInterval(() => {
+            if (cvReady) {
+              clearInterval(checkCv);
+              document.getElementById(\'opencvLoading\').style.display = \'none\';
+              initEditor();
+            }
+          }, 100);
+          setTimeout(() => { clearInterval(checkCv); if(!cvReady) { document.getElementById(\'opencvLoading\').style.display = \'none\'; statusBar.textContent = \'OpenCV failed to load. Please refresh and try again.\'; } }, 15000);
+        };
+        imgElement.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function initEditor() {
+      editor.classList.add(\'active\');
+      canvas = document.getElementById(\'mainCanvas\');
+      ctx = canvas.getContext(\'2d\');
+
+      const maxW = 800, maxH = 600;
+      let w = imgElement.naturalWidth, h = imgElement.naturalHeight;
+      if (w > maxW) { h = h * maxW / w; w = maxW; }
+      if (h > maxH) { w = w * maxH / h; h = maxH; }
+      canvas.width = Math.round(w);
+      canvas.height = Math.round(h);
+
+      ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+      originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      // Mask canvas (overlay)
+      maskCanvas = document.createElement(\'canvas\');
+      maskCanvas.width = canvas.width;
+      maskCanvas.height = canvas.height;
+      maskCtx = maskCanvas.getContext(\'2d\');
+      maskCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+      maskCtx.fillStyle = \'rgba(255, 0, 0, 0.4)\';
+
+      // Mouse events on canvas wrapper
+      const wrapper = document.getElementById(\'canvasWrapper\');
+      wrapper.addEventListener(\'mousedown\', startDraw);
+      wrapper.addEventListener(\'mousemove\', draw);
+      wrapper.addEventListener(\'mouseup\', endDraw);
+      wrapper.addEventListener(\'mouseleave\', endDraw);
+      wrapper.addEventListener(\'touchstart\', (e) => { e.preventDefault(); const t = e.touches[0]; startDraw(t); });
+      wrapper.addEventListener(\'touchmove\', (e) => { e.preventDefault(); const t = e.touches[0]; draw(t); });
+      wrapper.addEventListener(\'touchend\', endDraw);
+
+      document.getElementById(\'brushSize\').addEventListener(\'input\', function() {
+        document.getElementById(\'brushSizeVal\').textContent = this.value + \'px\';
+      });
+
+      processBtn.disabled = false;
+      statusBar.textContent = \'Brush over the watermark areas to mark them red, then click Remove Watermark.\';
+    }
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const clientX = e.clientX || e.pageX;
+      const clientY = e.clientY || e.pageY;
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+
+    function startDraw(e) {
+      if (currentMode !== \'brush\') return;
+      isDrawing = true;
+      const pos = getPos(e);
+      maskCtx.beginPath();
+      maskCtx.arc(pos.x, pos.y, parseInt(document.getElementById(\'brushSize\').value) / 2, 0, Math.PI * 2);
+      maskCtx.fill();
+      renderComposite();
+    }
+
+    function draw(e) {
+      if (!isDrawing || currentMode !== \'brush\') return;
+      const pos = getPos(e);
+      const size = parseInt(document.getElementById(\'brushSize\').value);
+      maskCtx.beginPath();
+      maskCtx.arc(pos.x, pos.y, size / 2, 0, Math.PI * 2);
+      maskCtx.fill();
+      renderComposite();
+    }
+
+    function endDraw() { isDrawing = false; }
+
+    function renderComposite() {
+      ctx.putImageData(originalImage, 0, 0);
+      ctx.drawImage(maskCanvas, 0, 0);
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll(\'.mode-btn\').forEach(b => b.classList.toggle(\'active\', b.dataset.mode === mode));
+      canvas.style.cursor = mode === \'brush\' ? \'crosshair\' : \'default\';
+    }
+
+    function resetMask() {
+      if (!maskCtx) return;
+      maskCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+      renderComposite();
+      hasResult = false;
+      resultDataUrl = null;
+      downloadBtn.style.display = \'none\';
+      document.getElementById(\'processBtn\').textContent = \'✨ Remove Watermark\';
+      statusBar.textContent = \'Mask cleared. Brush over the watermark areas again.\';
+    }
+
+    function resetImage() {
+      if (!originalImage) return;
+      ctx.putImageData(originalImage, 0, 0);
+      if (maskCtx) maskCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+      hasResult = false;
+      resultDataUrl = null;
+      downloadBtn.style.display = \'none\';
+      processBtn.textContent = \'✨ Remove Watermark\';
+      processBtn.disabled = false;
+      statusBar.textContent = \'Image reset. Brush and try again.\';
+    }
+
+    // Core: OpenCV inpainting
+    function processInpaint() {
+      if (!cvReady) { statusBar.textContent = \'OpenCV is not ready yet. Please wait...\'; return; }
+
+      // Check if mask has any content
+      const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height);
+      let hasMask = false;
+      for (let i = 3; i < maskData.data.length; i += 4) {
+        if (maskData.data[i] > 0) { hasMask = true; break; }
+      }
+      if (!hasMask) {
+        statusBar.textContent = \'Please brush over the watermark area first before removing.\';
+        return;
+      }
+
+      statusBar.innerHTML = \'<span class="spinner"></span> Removing watermark...\';
+      processBtn.disabled = true;
+      processBtn.textContent = \'⏳ Processing...\';
+
+      setTimeout(() => {
+        try {
+          // Get current image (with mask overlay) for processing
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const src = cv.matFromImageData(imageData);
+
+          // Create binary mask from overlay
+          const overlay = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height);
+          const mask = new cv.Mat(canvas.height, canvas.width, cv.CV_8UC1);
+          for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+              const idx = (y * canvas.width + x);
+              const overlayIdx = idx * 4;
+              mask.data[idx] = overlay.data[overlayIdx + 3] > 0 ? 255 : 0;
+            }
+          }
+
+          const dst = new cv.Mat();
+          const radius = 3;
+          cv.inpaint(src, mask, dst, radius, cv.INPAINT_TELEA);
+
+          const outputCanvas = document.createElement(\'canvas\');
+          outputCanvas.width = canvas.width;
+          outputCanvas.height = canvas.height;
+          const outCtx = outputCanvas.getContext(\'2d\');
+          const imgData = new ImageData(
+            new Uint8ClampedArray(dst.data),
+            dst.cols, dst.rows
+          );
+          outCtx.putImageData(imgData, 0, 0);
+          resultDataUrl = outputCanvas.toDataURL(\'image/png\');
+
+          // Display result
+          ctx.putImageData(imgData, 0, 0);
+
+          hasResult = true;
+          downloadBtn.style.display = \'inline-flex\';
+          processBtn.textContent = \'✨ Remove Watermark\';
+          processBtn.disabled = false;
+          statusBar.textContent = \'✅ Watermark removed successfully!\';
+
+          src.delete(); mask.delete(); dst.delete();
+        } catch (err) {
+          console.error(err);
+          statusBar.textContent = \'❌ Error processing image: \' + err.message;
+          processBtn.textContent = \'✨ Remove Watermark\';
+          processBtn.disabled = false;
+        }
+      }, 50);
+    }
+
+    function downloadResult() {
+      if (!resultDataUrl) return;
+      const a = document.createElement(\'a\');
+      a.href = resultDataUrl;
+      a.download = \'watermark_removed.png\';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle(\'open\');
+    }
+
+    // Handle paste from clipboard
+    document.addEventListener(\'paste\', function(e) {
+      const items = e.clipboardData.items;
+      for (let item of items) {
+        if (item.type.startsWith(\'image/\')) {
+          handleFile(item.getAsFile());
+          break;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
