@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://diyaluo.github.io/watermark-remover/sitemap.xml
+Sitemap: https://diyaluo.github.io/gaokao-advisor/sitemap-index.xml
